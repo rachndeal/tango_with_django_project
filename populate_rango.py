@@ -37,11 +37,9 @@ def populate():
 			'Django': {'pages': django_pages, 'views': '64', 'likes': '32'},
 			'Other Frameworks': {'pages': other_pages, 'views': '32', 'likes': '16'}}
 
-	# Below pages iterate through cats dict, then adds each category, then adds
-	# associated pages for each category
 
 	for cat, cat_data in cats.items():
-		c = add_cat(cat)
+		c = add_cat(cat) #added views=0 likes=0, error in view display here (shows up fine without...?)
 		for p in cat_data['pages']:
 			add_page(c, p['title'], p['url'])
 
@@ -49,16 +47,18 @@ def populate():
 		for p in Page.objects.filter(category=c):
 			print(f'- {c}: {p}')
 
+#CHAPTER 5 TEST ISSUE - SHOWING VIEWS AND LIKES prior to fixing ln42, now shows 0
+#1 error like this, but 3 errors (views/likes correct tho) if 42 reversed
+
 def add_page(cat, title, url, views=0):
 	p = Page.objects.get_or_create(category=cat, title=title)[0]
 	p.url = url
 	p.views = views
 	p.save()
 	return p
-#CHAPTER 5 TEST ISSUE - SHOWING 0 VIEWS AND LIKES (callback to cat_data?)
 
-def add_cat(name, views=0, likes=0):
-	c = Category.objects.get_or_create(name=name)[0]
+def add_cat(name, views, likes):
+	c = Category.objects.get_or_create(name=name, views=views, likes=likes)[0]
 	c.name = name
 	c.views = views
 	c.likes = likes
