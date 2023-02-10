@@ -39,7 +39,7 @@ def populate():
 
 
 	for cat, cat_data in cats.items():
-		c = add_cat(cat) #added views=0 likes=0, error in view display here (shows up fine without...?)
+		c = add_cat(cat, views=0, likes=0) #added views=0 likes=0, error in view display here (shows up fine without...?)
 		for p in cat_data['pages']:
 			add_page(c, p['title'], p['url'])
 
