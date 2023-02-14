@@ -16,13 +16,12 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from django.urls import include
+from django.urls import path, include
 from rango import views
 
 urlpatterns = [
-	path('', views.index, name='index'),
+	path('rango/', views.index, name='index'),
 	path('admin/', admin.site.urls),
-	path('about/', views.about, name='about'),
-	path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
+	path('rango/about/', views.about, name='about'),
+	path('rango/category/<slug:category_name_slug>/', views.show_category, name='show_category'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

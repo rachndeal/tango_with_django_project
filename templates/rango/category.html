@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load staticfiles %}
+
 <html>
 
 	<head>
@@ -7,8 +10,9 @@
 
 	<body>
 		<div>
+		<h1>{{ category.name }}</h1>
+		
 		{% if category %}
-			<h1>{{ category.name }}</h1>
 
 			{% if pages %}
 			<ul>
@@ -19,7 +23,6 @@
 
 			{% else %}
 			<strong>No pages currently in category.</strong>
-			
 			{% endif %}
 
 		{% else %}
@@ -27,6 +30,11 @@
 
 		{% endif %}
 		</div>
+
+		<div>
+			<a href="/rango/">Index</a><br />
+		</div>
+
 	</body>
 
 </html>
